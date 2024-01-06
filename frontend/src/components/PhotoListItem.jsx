@@ -19,6 +19,11 @@ const PhotoListItem = ({ id, imageSource, username, profile, location }) => {
         />
         <div className="photo-list__user-info">
           <p className="photo-list__user-username">{username}</p>
+          {location && location.city && location.country && (
+            <p className="photo-list__user-location">
+              {location.city}, {location.country}
+            </p>
+          )}
         </div>
       </div>
     </div>
@@ -30,7 +35,10 @@ PhotoListItem.propTypes = {
   imageSource: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
   profile: PropTypes.string.isRequired,
-  location: PropTypes.string
+  location: PropTypes.shape({
+    city: PropTypes.string,
+    country: PropTypes.string,
+  }),
 };
 
 export default PhotoListItem;

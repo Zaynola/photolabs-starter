@@ -1,21 +1,33 @@
+
 import React from "react";
-
 import "../styles/PhotoListItem.scss";
+import PropTypes from "prop-types";
 
-
-const sampleDataForPhotoListItem = {
-  id: "1",
-  location: {
-    city: "Montreal",
-    country: "Canada",
-  },
-  imageSource: `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`,
-  username: "Joe Example",
-  profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
+const PhotoListItem = ({ id, imageSource, username, profile }) => {
+  return (
+    <div className="photo-list-item">
+      <img
+        className="photo-list-item-image"
+        src={imageSource}
+        alt={`Photo by ${username}`}
+      />
+      <div className="photo-list-item-details">
+        <img
+          className="photo-list-item-profile"
+          src={profile}
+          alt={`${username}'s profile`}
+        />
+        <p className="photo-list-item-username">{username}</p>
+      </div>
+    </div>
+  );
 };
 
-const PhotoListItem = () => {
-  /* Insert React */
+PhotoListItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  imageSource: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  profile: PropTypes.string.isRequired,
 };
 
 export default PhotoListItem;

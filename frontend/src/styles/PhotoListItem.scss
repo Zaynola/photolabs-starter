@@ -1,5 +1,5 @@
 .photo-list__item {
-  margin: 24px;
+  // margin: 24px;
   padding: 8px;
   border-width: 0.5px;
   border-color: lightgray;
@@ -13,6 +13,7 @@
   width: 300px;
   height: 200px;
   object-fit: cover;
+  border-radius: 8px 8px 0 0;
 }
 
 .photo-list__image {

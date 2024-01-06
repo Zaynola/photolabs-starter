@@ -1,9 +1,19 @@
-
 import React from "react";
 import "../styles/PhotoListItem.scss";
 import PropTypes from "prop-types";
+import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = ({ id, imageSource, username, profile, location }) => {
+  const [isFav, setIsFav] = React.useState(false);
+
+  const handleFavClick = () => {
+    setIsFav(true);
+  };
+
+  const handleUnFavClick = () => {
+    setIsFav(false);
+  };
+
   return (
     <div className="photo-list__item">
       <img
@@ -26,6 +36,11 @@ const PhotoListItem = ({ id, imageSource, username, profile, location }) => {
           )}
         </div>
       </div>
+      <PhotoFavButton
+        isFav={isFav}
+        onFavClick={handleFavClick}
+        onUnFavClick={handleUnFavClick}
+      />
     </div>
   );
 };

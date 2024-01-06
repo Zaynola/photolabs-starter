@@ -6,12 +6,8 @@ import PhotoFavButton from "./PhotoFavButton";
 const PhotoListItem = ({ id, imageSource, username, profile, location }) => {
   const [isFav, setIsFav] = React.useState(false);
 
-  const handleFavClick = () => {
-    setIsFav(true);
-  };
-
-  const handleUnFavClick = () => {
-    setIsFav(false);
+  const toggleFav = () => {
+    setIsFav(prevIsFav => !prevIsFav);
   };
 
   return (
@@ -38,8 +34,8 @@ const PhotoListItem = ({ id, imageSource, username, profile, location }) => {
       </div>
       <PhotoFavButton
         isFav={isFav}
-        onFavClick={handleFavClick}
-        onUnFavClick={handleUnFavClick}
+        onFavClick={toggleFav}
+        onUnFavClick={toggleFav}
       />
     </div>
   );

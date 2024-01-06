@@ -15,9 +15,14 @@ const sampleDataForPhotoListItem = {
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
+  // Create an array with the same photo data repeated 3 times
+  const photos = Array(3).fill(sampleDataForPhotoListItem);
+
   return (
     <div className="App">
-      <PhotoListItem {...sampleDataForPhotoListItem} />
+      {photos.map((photoData, index) => (
+        <PhotoListItem key={index} {...photoData} />
+      ))}
     </div>
   );
 };

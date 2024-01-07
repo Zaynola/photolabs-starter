@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
-import TopNavigationBar from './TopNavigationBar';
 import PhotoList from './PhotoList';
 import FavBadge from './FavBadge';
 import '../styles/HomeRoute.scss';
+import TopNavigation from './TopNavigationBar';
 
 const HomeRoute = () => {
     const [likedPhotosCount, setLikedPhotosCount] = useState(0);
@@ -37,7 +37,7 @@ const HomeRoute = () => {
 
     return (
         <div className="home-route">
-            <TopNavigationBar
+            <TopNavigation
                 likedPhotosCount={likedPhotosCount}
                 toggleShowFavOnly={toggleShowFavOnly}
                 topics={topics}

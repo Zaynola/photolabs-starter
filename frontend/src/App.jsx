@@ -1,31 +1,64 @@
 import React from 'react';
-// import PhotoListItem from './components/PhotoListItem';
+import { useState } from 'react';
+import TopNavigationBar from './components/TopNavigationBar';
 import PhotoList from './components/PhotoList';
 import './App.scss';
-
-// const sampleDataForPhotoListItem = {
-//   id: "1",
-//   location: {
-//     city: "Montreal",
-//     country: "Canada",
-//   },
-//   imageSource: `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`,
-//   username: "Joe Example",
-//   profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
-// };
+import FavBadge from 'components/FavBadge';
 
 // Note: Rendering a single component to build components in isolation
-const App = () => (
-  // Create an array with the same photo data repeated 3 times
-  // const photos = Array(3).fill(sampleDataForPhotoListItem);
+const App = () => {
+  const [likedPhotosCount, setLikedPhotosCount] = useState(0);
+  const [showFavOnly, setShowFavOnly] = useState(false);
+  const [topics, setTopics] = useState([
+    { id: '1', title: 'Nature' },
+    { id: '2', title: 'Travel' },
+  ]);
+  const [currentTopic, setCurrentTopic] = useState('');
 
-  <div className="App">
-    {/* {photos.map((photoData, index) => (
-        <PhotoListItem key={index} {...photoData} /> */}
-    {/* ))} */}
-    <PhotoList />
-  </div>
-);
-// };
+
+  const incrementLikedPhotosCount = () => {
+    setLikedPhotosCount(prevCount => prevCount + 1);
+  };
+
+  const decrementLikedPhotosCount = () => {
+    setLikedPhotosCount(prevCount => Math.max(0, prevCount - 1));
+  };
+
+  const toggleShowFavOnly = () => {
+    setShowFavOnly((prevShowFavOnly) => !prevShowFavOnly);
+  };
+
+  const updateTopic = (newTopic) => {
+    setCurrentTopic(newTopic);
+  };
+
+  const resetFilters = () => {
+    setShowFavOnly(false);
+    setCurrentTopic('');
+  };
+
+  return (
+    <div className="App">
+      <TopNavigationBar
+        likedPhotosCount={likedPhotosCount}
+        toggleShowFavOnly={toggleShowFavOnly}
+        topics={topics}
+        showFavOnly={showFavOnly}
+        updateTopic={updateTopic}
+        resetFilters={resetFilters}
+        currentTopic={currentTopic}
+      />
+      <FavBadge
+        isFavPhotoExist={likedPhotosCount > 0}
+        likedPhotosCount={likedPhotosCount} />
+      <PhotoList
+        onLike={() => incrementLikedPhotosCount()}
+        onUnlike={() => decrementLikedPhotosCount()}
+        showFavOnly={showFavOnly}
+        currentTopic={currentTopic}
+      />
+    </div>
+  );
+};
 
 export default App;

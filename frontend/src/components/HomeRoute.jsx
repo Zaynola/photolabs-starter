@@ -44,7 +44,7 @@ const HomeRoute = () => {
                 showFavOnly={showFavOnly}
                 updateTopic={updateTopic}
                 resetFilters={resetFilters}
-                currentTopic={currentTopic}
+                currentTopic={currentTopic || ''}
             />
             <FavBadge
                 isFavPhotoExist={likedPhotosCount > 0}

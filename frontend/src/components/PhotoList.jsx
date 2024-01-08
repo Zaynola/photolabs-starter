@@ -1,76 +1,51 @@
 import React from "react";
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
+import PropTypes from 'prop-types'
 
-const sampleDataForPhotoList = [
-  {
-    id: "1",
-    location: {
-      city: "Montreal",
-      country: "Canada",
-    },
-    urls: {
-      full: `${process.env.PUBLIC_URL}/Image-1-Full.jpeg`,
-      regular: `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`,
-    },
-    user: {
-      id: "1",
-      username: "exampleuser",
-      name: "Joe Example",
-      profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
-    },
-  },
-  {
-    id: "2",
-    location: {
-      city: "Toronto",
-      country: "Canada",
-    },
-    urls: {
-      full: `${process.env.PUBLIC_URL}/Image-2-Full.jpeg`,
-      regular: `${process.env.PUBLIC_URL}/Image-2-Regular.jpeg`,
-    },
-    user: {
-      id: "2",
-      username: "exampleuser",
-      name: "Joe Example",
-      profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
-    },
-  },
-  {
-    id: "3",
-    location: {
-      city: "Ottawa",
-      country: "Canada",
-    },
-    urls: {
-      full: `${process.env.PUBLIC_URL}/Image-3-Full.jpeg`,
-      regular: `${process.env.PUBLIC_URL}/Image-3-Regular.jpeg`,
-    },
-    user: {
-      id: "3",
-      username: "exampleuser",
-      name: "Joe Example",
-      profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
-    },
-  },
-];
 
-const PhotoList = () => {
+const PhotoList = (props) => {
+  const { photos, onLike, onUnlike, showFavOnly, currentTopic } = props;
+  if (!photos) {
+    return null;
+  }
+
+  const incrementLikedPhotosCount = (photoId) => {
+    const isLiked = likedPhotos.includes(photoId);
+    if (!isLiked) {
+      onLike(photoId);
+    }
+  };
+
+  const decrementLikedPhotosCount = (photoId) => {
+    const isLiked = likedPhotos.includes(photoId);
+    if (isLiked) {
+      onUnlike(photoId);
+    }
+  };
+
   return (
-    <ul className="photo-list">
-      {sampleDataForPhotoList.map((photo) => (
-        <PhotoListItem
+    <div className="photo-list">
+      {photos.map((photo) => (
+        <div
           key={photo.id}
-          id={photo.id}
-          imageSource={photo.urls.regular}
-          username={photo.user.username}
-          profile={photo.user.profile}
-          location={photo.location}
-        />
+          className="photo-card">
+          <img src={photo.urls.regular} alt={photo.id} />
+          <p>{photo.location.city}, {photo.location.country}</p>
+          <button onClick={() => onLike(photo.id)}>Like</button>
+          <button onClick={() => onUnlike(photo.id)}>Unlike</button>
+        </div>
       ))}
-    </ul>
+    </div>
   );
+};
+
+PhotoList.propTypes = {
+  photos: PropTypes.array,
+  onLike: PropTypes.func.isRequired,
+  onUnlike: PropTypes.func.isRequired,
+  showFavOnly: PropTypes.bool.isRequired,
+  currentTopic: PropTypes.string,
 };
 
 export default PhotoList;

@@ -37,7 +37,16 @@ const App = () => {
 
   return (
     <div className="App">
-      <HomeRoute />
+      <HomeRoute
+        photos={photos}
+        topics={topics}
+        likedPhotosCount={likedPhotosCount}
+        toggleShowFavOnly={toggleShowFavOnly}
+        showFavOnly={showFavOnly}
+        updateTopic={updateTopic}
+        resetFilters={resetFilters}
+        currentTopic={currentTopic}
+      />
       <TopNavigation
         likedPhotosCount={likedPhotosCount}
         toggleShowFavOnly={toggleShowFavOnly}
@@ -54,6 +63,8 @@ const App = () => {
       <PhotoList
         onLike={() => incrementLikedPhotosCount()}
         onUnlike={() => decrementLikedPhotosCount()}
+        showFavOnly={showFavOnly}
+        currentTopic={currentTopic}
       />
     </div>
   );

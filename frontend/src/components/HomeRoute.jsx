@@ -5,14 +5,17 @@ import FavBadge from './FavBadge';
 import '../styles/HomeRoute.scss';
 import TopNavigation from './TopNavigationBar';
 
-const HomeRoute = () => {
-    const [likedPhotosCount, setLikedPhotosCount] = useState(0);
-    const [showFavOnly, setShowFavOnly] = useState(false);
-    const [topics, setTopics] = useState([
-        { id: '1', title: 'Nature' },
-        { id: '2', title: 'Travel' },
-    ]);
-    const [currentTopic, setCurrentTopic] = useState('');
+const HomeRoute = (props) => {
+    const {
+        likedPhotosCount,
+        toggleShowFavOnly,
+        topics,
+        showFavOnly,
+        updateTopic,
+        resetFilters,
+        currentTopic,
+        photos,
+    } = props;
 
     const incrementLikedPhotosCount = () => {
         setLikedPhotosCount(prevCount => prevCount + 1);
@@ -20,19 +23,6 @@ const HomeRoute = () => {
 
     const decrementLikedPhotosCount = () => {
         setLikedPhotosCount(prevCount => Math.max(0, prevCount - 1));
-    };
-
-    const toggleShowFavOnly = () => {
-        setShowFavOnly((prevShowFavOnly) => !prevShowFavOnly);
-    };
-
-    const updateTopic = (newTopic) => {
-        setCurrentTopic(newTopic);
-    };
-
-    const resetFilters = () => {
-        setShowFavOnly(false);
-        setCurrentTopic('');
     };
 
     return (
@@ -55,6 +45,7 @@ const HomeRoute = () => {
                 onUnlike={() => decrementLikedPhotosCount()}
                 showFavOnly={showFavOnly}
                 currentTopic={currentTopic}
+                photos={photos}
             />
         </div>
     );

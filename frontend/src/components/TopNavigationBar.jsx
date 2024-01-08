@@ -27,6 +27,7 @@ const TopNavigation = (props) => {
           updateTopic={updateTopic}
           currentTopic={currentTopic}
         />
+
         <div
           className={showFavOnly ? "top-nav-bar-fav--active" : "top-nav-bar-fav"}>
           <FavBadge likedPhotosCount={likedPhotosCount} onClick={toggleShowFavOnly} />
@@ -43,7 +44,7 @@ TopNavigation.propTypes = {
   showFavOnly: PropTypes.bool.isRequired,
   updateTopic: PropTypes.func.isRequired,
   resetFilters: PropTypes.func.isRequired,
-  currentTopic: PropTypes.string.isRequired,
+  currentTopic: PropTypes.string,
 };
 
 export default TopNavigation;

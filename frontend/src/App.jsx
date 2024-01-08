@@ -2,9 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import './App.scss';
 import HomeRoute from './components/HomeRoute';
-import TopNavigation from './components/TopNavigationBar';
-import PhotoList from './components/PhotoList';
-import FavBadge from './components/FavBadge';
+// import TopNavigation from './components/TopNavigationBar';
+// import PhotoList from './components/PhotoList';
+// import FavBadge from './components/FavBadge';
 import photos from './mocks/photos';
 import topics from './mocks/topics';
 
@@ -47,7 +47,7 @@ const App = () => {
         resetFilters={resetFilters}
         currentTopic={currentTopic}
       />
-      <TopNavigation
+      {/* <TopNavigation
         likedPhotosCount={likedPhotosCount}
         toggleShowFavOnly={toggleShowFavOnly}
         topics={topics}
@@ -65,7 +65,7 @@ const App = () => {
         onUnlike={() => decrementLikedPhotosCount()}
         showFavOnly={showFavOnly}
         currentTopic={currentTopic}
-      />
+      /> */}
     </div>
   );
 };

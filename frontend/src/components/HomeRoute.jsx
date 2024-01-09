@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import PhotoList from './PhotoList';
 import FavBadge from './FavBadge';
 import '../styles/HomeRoute.scss';

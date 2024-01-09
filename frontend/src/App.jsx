@@ -2,9 +2,6 @@ import React from 'react';
 import { useState } from 'react';
 import './App.scss';
 import HomeRoute from './components/HomeRoute';
-// import TopNavigation from './components/TopNavigationBar';
-// import PhotoList from './components/PhotoList';
-// import FavBadge from './components/FavBadge';
 import photos from './mocks/photos';
 import topics from './mocks/topics';
 
@@ -47,25 +44,6 @@ const App = () => {
         resetFilters={resetFilters}
         currentTopic={currentTopic}
       />
-      {/* <TopNavigation
-        likedPhotosCount={likedPhotosCount}
-        toggleShowFavOnly={toggleShowFavOnly}
-        topics={topics}
-        showFavOnly={showFavOnly}
-        updateTopic={updateTopic}
-        resetFilters={resetFilters}
-        currentTopic={currentTopic}
-      />
-      <FavBadge
-        isFavPhotoExist={likedPhotosCount > 0}
-        likedPhotosCount={likedPhotosCount}
-      />
-      <PhotoList
-        onLike={() => incrementLikedPhotosCount()}
-        onUnlike={() => decrementLikedPhotosCount()}
-        showFavOnly={showFavOnly}
-        currentTopic={currentTopic}
-      /> */}
     </div>
   );
 };

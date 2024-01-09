@@ -7,7 +7,6 @@ import TopNavigation from './TopNavigationBar';
 
 const HomeRoute = (props) => {
     const {
-        likedPhotosCount,
         toggleShowFavOnly,
         topics,
         showFavOnly,
@@ -44,7 +43,7 @@ const HomeRoute = (props) => {
     return (
         <div className="home-route">
             <TopNavigation
-                likedPhotosCount={likedPhotosCount}
+                likedPhotos={likedPhotos}
                 toggleShowFavOnly={toggleShowFavOnly}
                 topics={topics}
                 showFavOnly={showFavOnly}
@@ -53,8 +52,8 @@ const HomeRoute = (props) => {
                 currentTopic={currentTopic || ''}
             />
             <FavBadge
-                isFavPhotoExist={likedPhotosCount > 0}
-                likedPhotosCount={likedPhotosCount.length}
+                isFavPhotoExist={likedPhotos.length > 0}
+                likedPhotosCount={likedPhotos.length}
             />
             <PhotoList
                 onLike={handleLike}

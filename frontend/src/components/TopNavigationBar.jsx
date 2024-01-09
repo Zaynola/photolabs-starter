@@ -38,7 +38,7 @@ const TopNavigation = (props) => {
 };
 
 TopNavigation.propTypes = {
-  likedPhotosCount: PropTypes.number.isRequired,
+  likedPhotosCount: PropTypes.number,
   toggleShowFavOnly: PropTypes.func.isRequired,
   topics: PropTypes.array.isRequired,
   showFavOnly: PropTypes.bool.isRequired,

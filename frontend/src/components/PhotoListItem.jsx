@@ -8,7 +8,7 @@ const PhotoListItem = ({ id, imageSource, username, profile, location, onLike, o
 
   const toggleFav = () => {
     if (isFavInitially) {
-      onUnlike(id);
+      onUnLike(id);
     } else {
       onLike(id);
     }
@@ -38,8 +38,8 @@ const PhotoListItem = ({ id, imageSource, username, profile, location, onLike, o
       </div>
       <PhotoFavButton
         isFav={isFavInitially}
-        onFavClick={() => (isFavInitially ? onUnlike(id) : onLike(id))}
-        onUnFavClick={() => (isFavInitially ? onUnlike(id) : onLike(id))}
+        onFavClick={() => (isFavInitially ? onUnLike(id) : onLike(id))}
+        onUnFavClick={() => (isFavInitially ? onUnLike(id) : onLike(id))}
       />
     </div>
   );

@@ -21,24 +21,13 @@ const HomeRoute = (props) => {
     const handleLike = (photoId) => {
         setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, photoId]);
     };
+    console.log({ likedPhotos })
 
     const handleUnlike = (photoId) => {
         setLikedPhotos((prevLikedPhotos) =>
             prevLikedPhotos.filter((id) => id !== photoId)
         );
     };
-
-    // const incrementLikedPhotosCount = (photoId) => {
-    //     setLikedPhotosCount(prevCount => prevCount + 1);
-    //     setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, photoId]);
-    // };
-
-    // const decrementLikedPhotosCount = (photoId) => {
-    //     setLikedPhotosCount(prevCount => Math.max(0, prevCount - 1));
-    //     setLikedPhotos((prevLikedPhotos) =>
-    //         prevLikedPhotos.filter((id) => id !== photoId)
-    //     );
-    // };
 
     return (
         <div className="home-route">

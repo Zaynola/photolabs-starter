@@ -3,7 +3,6 @@ import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
 import PropTypes from 'prop-types'
 
-
 const PhotoList = (props) => {
   const { photos, onLike, onUnlike, showFavOnly, currentTopic, likedPhotos } = props;
 
@@ -16,12 +15,16 @@ const PhotoList = (props) => {
       {photos.map((photo) => (
         <div key={photo.id} className="photo-card">
           <PhotoListItem
+            id={photo.id}
             photo={photo}
             onLike={() => onLike(photo.id)}
             onUnlike={() => onUnlike(photo.id)}
             showFavOnly={showFavOnly}
             currentTopic={currentTopic}
-            likedPhotos={likedPhotos} // Pass likedPhotos as a prop
+            likedPhotos={likedPhotos}
+            username={photo.user.username}
+            imageSource={photo.urls.regular}
+            profile={photo.user.profile}
           />
         </div>
       ))}

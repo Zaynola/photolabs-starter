@@ -22,7 +22,8 @@ function PhotoFavButton(props) {
   return (
     <div className={buttonClasses} onClick={handleIconClick}>
       <div className="photo-list__fav-icon-svg">
-        <FavIcon fill={isFav ? '#C80000' : '#EEEEEE'} />
+        {/* <FavIcon fill={isFav ? '#C80000' : '#EEEEEE'} /> */}
+        <FavIcon selected={isFav} />
       </div>
     </div>
   );

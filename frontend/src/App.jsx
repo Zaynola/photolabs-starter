@@ -5,7 +5,6 @@ import HomeRoute from './components/HomeRoute';
 import photos from './mocks/photos';
 import topics from './mocks/topics';
 
-// Note: Rendering a single component to build components in isolation
 const App = () => {
   const [likedPhotosCount, setLikedPhotosCount] = useState(0);
   const [showFavOnly, setShowFavOnly] = useState(false);

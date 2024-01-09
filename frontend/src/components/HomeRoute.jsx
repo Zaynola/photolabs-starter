@@ -29,7 +29,7 @@ const HomeRoute = (props) => {
         );
     };
 
-    const incrementLikedPhotosCount = () => {
+    const incrementLikedPhotosCount = (photoId) => {
         setLikedPhotosCount(prevCount => prevCount + 1);
         setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, photoId]);
     };
@@ -59,15 +59,16 @@ const HomeRoute = (props) => {
             <PhotoList
                 onLike={(photoId) => {
                     handleLike(photoId);
-                    incrementLikedPhotosCount();
+                    incrementLikedPhotosCount(photoId);
                 }}
                 onUnlike={(photoId) => {
                     handleUnlike(photoId);
-                    decrementLikedPhotosCount();
+                    decrementLikedPhotosCount(photoId);
                 }}
                 showFavOnly={showFavOnly}
                 currentTopic={currentTopic}
                 photos={photos}
+                likedPhotos={likedPhotos}
             />
         </div>
     );

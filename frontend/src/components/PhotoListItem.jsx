@@ -42,10 +42,10 @@ const PhotoListItem = ({ id, imageSource, username, profile, location }) => {
 };
 
 PhotoListItem.propTypes = {
-  id: PropTypes.string.isRequired,
-  imageSource: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
-  profile: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  imageSource: PropTypes.string,
+  username: PropTypes.string,
+  profile: PropTypes.string,
   location: PropTypes.shape({
     city: PropTypes.string,
     country: PropTypes.string,

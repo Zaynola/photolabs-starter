@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 const PhotoList = (props) => {
   const { photos, onLike, onUnlike, showFavOnly, currentTopic, likedPhotos } = props;
 
-  if (!photos || !likedPhotos) {
+  if (!photos) {
     return null;
   }
 
@@ -15,17 +15,14 @@ const PhotoList = (props) => {
     <div className="photo-list">
       {photos.map((photo) => (
         <div key={photo.id} className="photo-card">
-          <img src={photo.urls.regular} alt={photo.id} />
-          <p>{photo.location.city}, {photo.location.country}</p>
-          <button
-            onClick={() =>
-              likedPhotos.includes(photo.id)
-                ? onUnlike(photo.id)
-                : onLike(photo.id)
-            }
-          >
-            {likedPhotos.includes(photo.id) ? 'Unlike' : 'Like'}
-          </button>
+          <PhotoListItem
+            photo={photo}
+            onLike={() => onLike(photo.id)}
+            onUnlike={() => onUnlike(photo.id)}
+            showFavOnly={showFavOnly}
+            currentTopic={currentTopic}
+            likedPhotos={likedPhotos} // Pass likedPhotos as a prop
+          />
         </div>
       ))}
     </div>

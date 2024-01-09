@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import PhotoList from './PhotoList';
 import FavBadge from './FavBadge';
 import '../styles/HomeRoute.scss';
@@ -16,12 +17,28 @@ const HomeRoute = (props) => {
         photos,
     } = props;
 
-    const incrementLikedPhotosCount = () => {
-        setLikedPhotosCount(prevCount => prevCount + 1);
+    const [likedPhotos, setLikedPhotos] = useState([]);
+
+    const handleLike = (photoId) => {
+        setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, photoId]);
     };
 
-    const decrementLikedPhotosCount = () => {
+    const handleUnlike = (photoId) => {
+        setLikedPhotos((prevLikedPhotos) =>
+            prevLikedPhotos.filter((id) => id !== photoId)
+        );
+    };
+
+    const incrementLikedPhotosCount = () => {
+        setLikedPhotosCount(prevCount => prevCount + 1);
+        setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, photoId]);
+    };
+
+    const decrementLikedPhotosCount = (photoId) => {
         setLikedPhotosCount(prevCount => Math.max(0, prevCount - 1));
+        setLikedPhotos((prevLikedPhotos) =>
+            prevLikedPhotos.filter((id) => id !== photoId)
+        );
     };
 
     return (
@@ -37,11 +54,17 @@ const HomeRoute = (props) => {
             />
             <FavBadge
                 isFavPhotoExist={likedPhotosCount > 0}
-                likedPhotosCount={likedPhotosCount}
+                likedPhotosCount={likedPhotosCount.length}
             />
             <PhotoList
-                onLike={() => incrementLikedPhotosCount()}
-                onUnlike={() => decrementLikedPhotosCount()}
+                onLike={(photoId) => {
+                    handleLike(photoId);
+                    incrementLikedPhotosCount();
+                }}
+                onUnlike={(photoId) => {
+                    handleUnlike(photoId);
+                    decrementLikedPhotosCount();
+                }}
                 showFavOnly={showFavOnly}
                 currentTopic={currentTopic}
                 photos={photos}
@@ -49,5 +72,6 @@ const HomeRoute = (props) => {
         </div>
     );
 };
+
 
 export default HomeRoute;

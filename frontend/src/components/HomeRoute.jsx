@@ -29,17 +29,17 @@ const HomeRoute = (props) => {
         );
     };
 
-    const incrementLikedPhotosCount = (photoId) => {
-        setLikedPhotosCount(prevCount => prevCount + 1);
-        setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, photoId]);
-    };
+    // const incrementLikedPhotosCount = (photoId) => {
+    //     setLikedPhotosCount(prevCount => prevCount + 1);
+    //     setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, photoId]);
+    // };
 
-    const decrementLikedPhotosCount = (photoId) => {
-        setLikedPhotosCount(prevCount => Math.max(0, prevCount - 1));
-        setLikedPhotos((prevLikedPhotos) =>
-            prevLikedPhotos.filter((id) => id !== photoId)
-        );
-    };
+    // const decrementLikedPhotosCount = (photoId) => {
+    //     setLikedPhotosCount(prevCount => Math.max(0, prevCount - 1));
+    //     setLikedPhotos((prevLikedPhotos) =>
+    //         prevLikedPhotos.filter((id) => id !== photoId)
+    //     );
+    // };
 
     return (
         <div className="home-route">
@@ -57,14 +57,8 @@ const HomeRoute = (props) => {
                 likedPhotosCount={likedPhotosCount.length}
             />
             <PhotoList
-                onLike={(photoId) => {
-                    handleLike(photoId);
-                    incrementLikedPhotosCount(photoId);
-                }}
-                onUnlike={(photoId) => {
-                    handleUnlike(photoId);
-                    decrementLikedPhotosCount(photoId);
-                }}
+                onLike={handleLike}
+                onUnlike={handleUnlike}
                 showFavOnly={showFavOnly}
                 currentTopic={currentTopic}
                 photos={photos}

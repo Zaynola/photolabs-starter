@@ -3,11 +3,15 @@ import "../styles/PhotoListItem.scss";
 import PropTypes from "prop-types";
 import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoListItem = ({ id, imageSource, username, profile, location }) => {
-  const [isFav, setIsFav] = React.useState(false);
+const PhotoListItem = ({ id, imageSource, username, profile, location, onLike, onUnLike, likedPhotos }) => {
+  const isFavInitially = likedPhotos.includes(id);
 
   const toggleFav = () => {
-    setIsFav(prevIsFav => !prevIsFav);
+    if (isFavInitially) {
+      onUnlike(id);
+    } else {
+      onLike(id);
+    }
   };
 
   return (
@@ -33,13 +37,14 @@ const PhotoListItem = ({ id, imageSource, username, profile, location }) => {
         </div>
       </div>
       <PhotoFavButton
-        isFav={isFav}
-        onFavClick={toggleFav}
-        onUnFavClick={toggleFav}
+        isFav={isFavInitially}
+        onFavClick={() => (isFavInitially ? onUnlike(id) : onLike(id))}
+        onUnFavClick={() => (isFavInitially ? onUnlike(id) : onLike(id))}
       />
     </div>
   );
 };
+
 
 PhotoListItem.propTypes = {
   id: PropTypes.string,
@@ -50,6 +55,9 @@ PhotoListItem.propTypes = {
     city: PropTypes.string,
     country: PropTypes.string,
   }),
+  onLike: PropTypes.func.isRequired,
+  onUnlike: PropTypes.func.isRequired,
+  likedPhotos: PropTypes.array.isRequired,
 };
 
 export default PhotoListItem;

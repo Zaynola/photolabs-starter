@@ -6,8 +6,6 @@ import '../styles/PhotoFavButton.scss';
 function PhotoFavButton(props) {
   const { isFav, onFavClick, onUnFavClick } = props;
 
-  const fill = isFav ? "#C80000" : "#EEEEEE";
-
   const handleIconClick = () => {
     console.log('Icon clicked!');
     if (isFav) {

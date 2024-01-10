@@ -4,7 +4,7 @@ import PhotoListItem from "./PhotoListItem";
 import PropTypes from 'prop-types'
 
 const PhotoList = (props) => {
-  const { photos, onLike, onUnlike, showFavOnly, currentTopic, likedPhotos } = props;
+  const { photos, onLike, onUnLike, showFavOnly, currentTopic, likedPhotos } = props;
 
   if (!photos) {
     return null;
@@ -18,7 +18,7 @@ const PhotoList = (props) => {
             id={photo.id}
             photo={photo}
             onLike={() => onLike(photo.id)}
-            onUnlike={() => onUnlike(photo.id)}
+            onUnLike={() => onUnLike(photo.id)}
             showFavOnly={showFavOnly}
             currentTopic={currentTopic}
             likedPhotos={likedPhotos}
@@ -35,7 +35,7 @@ const PhotoList = (props) => {
 PhotoList.propTypes = {
   photos: PropTypes.array,
   onLike: PropTypes.func.isRequired,
-  onUnlike: PropTypes.func.isRequired,
+  onUnLike: PropTypes.func.isRequired,
   showFavOnly: PropTypes.bool.isRequired,
   currentTopic: PropTypes.string,
   likedPhotos: PropTypes.array,

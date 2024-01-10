@@ -21,7 +21,6 @@ const HomeRoute = (props) => {
     const handleLike = (photoId) => {
         setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, photoId]);
     };
-    console.log({ likedPhotos })
 
     const handleUnlike = (photoId) => {
         setLikedPhotos((prevLikedPhotos) =>
@@ -46,7 +45,7 @@ const HomeRoute = (props) => {
             />
             <PhotoList
                 onLike={handleLike}
-                onUnlike={handleUnlike}
+                onUnLike={handleUnlike}
                 showFavOnly={showFavOnly}
                 currentTopic={currentTopic}
                 photos={photos}

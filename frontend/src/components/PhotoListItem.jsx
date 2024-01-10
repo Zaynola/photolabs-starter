@@ -38,8 +38,8 @@ const PhotoListItem = ({ id, imageSource, username, profile, location, onLike, o
       </div>
       <PhotoFavButton
         isFav={isFavInitially}
-        onFavClick={() => (isFavInitially ? onUnLike(id) : onLike(id))}
-        onUnFavClick={() => (isFavInitially ? onUnLike(id) : onLike(id))}
+        onFavClick={toggleFav}
+        onUnFavClick={toggleFav}
       />
     </div>
   );
@@ -56,7 +56,7 @@ PhotoListItem.propTypes = {
     country: PropTypes.string,
   }),
   onLike: PropTypes.func.isRequired,
-  onUnlike: PropTypes.func.isRequired,
+  onUnLike: PropTypes.func.isRequired,
   likedPhotos: PropTypes.array.isRequired,
 };
 

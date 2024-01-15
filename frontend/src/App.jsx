@@ -4,11 +4,14 @@ import './App.scss';
 import HomeRoute from './components/HomeRoute';
 import photos from './mocks/photos';
 import topics from './mocks/topics';
+import PhotoDetailsModal from './routes/PhotoDetailsModal';
+
 
 const App = () => {
   const [likedPhotosCount, setLikedPhotosCount] = useState(0);
   const [showFavOnly, setShowFavOnly] = useState(false);
   const [currentTopic, setCurrentTopic] = useState(null);
+  const [displayModal, setDisplayModal] = useState(false);
 
   const incrementLikedPhotosCount = () => {
     setLikedPhotosCount(prevCount => prevCount + 1);
@@ -31,9 +34,13 @@ const App = () => {
     setCurrentTopic(null);
   };
 
+  const toggleModal = () => {
+    setDisplayModal(!displayModal);
+  };
+
   return (
     <div className="App">
-      <HomeRoute
+       <HomeRoute
         photos={photos}
         topics={topics}
         likedPhotosCount={likedPhotosCount}
@@ -42,7 +49,9 @@ const App = () => {
         updateTopic={updateTopic}
         resetFilters={resetFilters}
         currentTopic={currentTopic}
+        onPhotoClick={toggleModal}
       />
+       {displayModal && <PhotoDetailsModal onClose={toggleModal} />}
     </div>
   );
 };

@@ -4,7 +4,7 @@ import PhotoListItem from "./PhotoListItem";
 import PropTypes from 'prop-types'
 
 const PhotoList = (props) => {
-  const { photos, onLike, onUnLike, showFavOnly, currentTopic, likedPhotos } = props;
+  const { photos, onLike, onUnLike, showFavOnly, currentTopic, likedPhotos, onPhotoClick } = props;
 
   if (!photos) {
     return null;
@@ -25,6 +25,7 @@ const PhotoList = (props) => {
             username={photo.user.username}
             imageSource={photo.urls.regular}
             profile={photo.user.profile}
+            onPhotoClick={onPhotoClick}
           />
         </div>
       ))}
@@ -39,6 +40,7 @@ PhotoList.propTypes = {
   showFavOnly: PropTypes.bool.isRequired,
   currentTopic: PropTypes.string,
   likedPhotos: PropTypes.array,
+  onPhotoClick: PropTypes.func.isRequired,
 };
 
 export default PhotoList;

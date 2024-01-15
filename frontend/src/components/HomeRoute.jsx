@@ -14,6 +14,7 @@ const HomeRoute = (props) => {
         resetFilters,
         currentTopic,
         photos,
+        onPhotoClick,
     } = props;
 
     const [likedPhotos, setLikedPhotos] = useState([]);
@@ -50,6 +51,7 @@ const HomeRoute = (props) => {
                 currentTopic={currentTopic}
                 photos={photos}
                 likedPhotos={likedPhotos}
+                onPhotoClick={onPhotoClick}
             />
         </div>
     );

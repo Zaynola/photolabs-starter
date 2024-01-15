@@ -4,6 +4,7 @@ import PhotoList from './PhotoList';
 import FavBadge from './FavBadge';
 import '../styles/HomeRoute.scss';
 import TopNavigation from './TopNavigationBar';
+import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 
 const HomeRoute = (props) => {
     const {
@@ -18,16 +19,22 @@ const HomeRoute = (props) => {
     } = props;
 
     const [likedPhotos, setLikedPhotos] = useState([]);
+    const [displayModal, setDisplayModal] = useState(false);
+
 
     const handleLike = (photoId) => {
         setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, photoId]);
     };
-
+    
     const handleUnlike = (photoId) => {
         setLikedPhotos((prevLikedPhotos) =>
             prevLikedPhotos.filter((id) => id !== photoId)
         );
     };
+
+    const handlePhotoClick = () => {
+        setDisplayModal(true);
+      };
 
     return (
         <div className="home-route">
@@ -52,7 +59,9 @@ const HomeRoute = (props) => {
                 photos={photos}
                 likedPhotos={likedPhotos}
                 onPhotoClick={onPhotoClick}
+                setDisplayModal={setDisplayModal}
             />
+            {displayModal && <PhotoDetailsModal onClose={() => setDisplayModal(false)} />}
         </div>
     );
 };

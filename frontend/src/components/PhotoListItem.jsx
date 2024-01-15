@@ -14,8 +14,14 @@ const PhotoListItem = ({ id, imageSource, username, profile, location, onLike, o
     }
   };
 
+  const handlePhotoClick = () => {
+    // Open the modal or perform any other action when a photo is clicked
+    onPhotoClick(id);
+  };
+
+
   return (
-    <div className="photo-list__item">
+    <div className="photo-list__item" onClick={handlePhotoClick}>
       <img
         className="photo-list__image"
         src={imageSource}

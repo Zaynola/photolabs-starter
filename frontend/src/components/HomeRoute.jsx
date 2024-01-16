@@ -4,7 +4,7 @@ import PhotoList from './PhotoList';
 import FavBadge from './FavBadge';
 import '../styles/HomeRoute.scss';
 import TopNavigation from './TopNavigationBar';
-import PhotoDetailsModal from 'routes/PhotoDetailsModal';
+import PhotoDetailsModal from '../routes/PhotoDetailsModal';
 
 const HomeRoute = (props) => {
     const {

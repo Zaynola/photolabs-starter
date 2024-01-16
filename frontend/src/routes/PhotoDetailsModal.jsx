@@ -2,12 +2,9 @@ import React from 'react';
 import '../styles/PhotoDetailsModal.scss';
 import closeSymbol from '../assets/closeSymbol.svg';
 
-const PhotoDetailsModal = ({ onClose, selectedPhoto, similarPhotos }) => {
-  // if (!selectedPhoto) {
-  //   return null;
-  // }
-
+const PhotoDetailsModal = ({ onClose, selectedPhoto, similarPhotos, isFavorite, onToggleFavorite }) => {
   const { imageSource, username, location, profile } = selectedPhoto;
+
 
   return (
     <div className="photo-details-modal">
@@ -53,7 +50,14 @@ const PhotoDetailsModal = ({ onClose, selectedPhoto, similarPhotos }) => {
           ))}
         </div>
       </div>
-    </div>);
-};
 
+      {/* Favorite Icon */}
+      <div className="photo-details-modal__favorite">
+        <button onClick={onToggleFavorite}>
+          {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+        </button>
+      </div>
+    </div>
+  );
+};
 export default PhotoDetailsModal;

@@ -13,6 +13,9 @@ const App = () => {
   const [currentTopic, setCurrentTopic] = useState(null);
   //const [displayModal, setDisplayModal] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [likedPhotos, setLikedPhotos] = useState([]);
+
 
   const incrementLikedPhotosCount = () => {
     setLikedPhotosCount(prevCount => prevCount + 1);
@@ -36,10 +39,10 @@ const App = () => {
   };
 
   const toggleModal = (id) => {
-    const target = photos.find(photo => photo.id === id)
+    const target = photos.find(photo => photo.id === id);
     // console.log("toggglemodal")
     setSelectedPhoto(target);
-    // console.log(displayModal)
+    setIsFavorite(likedPhotos.includes(id));
   };
 
   return (
@@ -54,15 +57,31 @@ const App = () => {
         resetFilters={resetFilters}
         currentTopic={currentTopic}
         onPhotoClick={toggleModal}
+        isFavorite={isFavorite}
       // displayModal={displayModal}
       // setDisplayModal={setDisplayModal}
       />
-      {selectedPhoto && <PhotoDetailsModal onClose={toggleModal}
-        selectedPhoto={selectedPhoto}
-      />}
-
-
-
+      {selectedPhoto && (
+        <PhotoDetailsModal
+          onClose={() => {
+            toggleModal(selectedPhoto.id);
+          }}
+          selectedPhoto={selectedPhoto}
+          isFavorite={likedPhotos.includes(selectedPhoto.id)}
+          onToggleFavorite={() => {
+            setIsFavorite((prev) => !prev);
+            setLikedPhotos((prevLikedPhotos) => {
+              if (prev) {
+                // Remove from likedPhotos
+                return prevLikedPhotos.filter((photoId) => photoId !== selectedPhoto.id);
+              } else {
+                // Add to likedPhotos
+                return [...prevLikedPhotos, selectedPhoto.id];
+              }
+            });
+          }}
+        />
+      )}
     </div>
   );
 };

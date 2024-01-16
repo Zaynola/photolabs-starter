@@ -11,7 +11,8 @@ const App = () => {
   const [likedPhotosCount, setLikedPhotosCount] = useState(0);
   const [showFavOnly, setShowFavOnly] = useState(false);
   const [currentTopic, setCurrentTopic] = useState(null);
-  const [displayModal, setDisplayModal] = useState(false);
+  //const [displayModal, setDisplayModal] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
 
   const incrementLikedPhotosCount = () => {
     setLikedPhotosCount(prevCount => prevCount + 1);
@@ -34,9 +35,10 @@ const App = () => {
     setCurrentTopic(null);
   };
 
-  const toggleModal = () => {
+  const toggleModal = (id) => {
+    const target = photos.find(photo => photo.id === id)
     // console.log("toggglemodal")
-    setDisplayModal(!displayModal);
+    setSelectedPhoto(target);
     // console.log(displayModal)
   };
 
@@ -52,10 +54,15 @@ const App = () => {
         resetFilters={resetFilters}
         currentTopic={currentTopic}
         onPhotoClick={toggleModal}
-        displayModal={displayModal}
-       setDisplayModal={setDisplayModal}
+       // displayModal={displayModal}
+      // setDisplayModal={setDisplayModal}
       />
-       {displayModal && <PhotoDetailsModal onClose={toggleModal} />}
+       {selectedPhoto && <PhotoDetailsModal onClose={toggleModal}
+       selectedPhoto={selectedPhoto}
+       />}
+
+       
+       
     </div>
   );
 };

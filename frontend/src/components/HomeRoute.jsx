@@ -4,7 +4,6 @@ import PhotoList from './PhotoList';
 import FavBadge from './FavBadge';
 import '../styles/HomeRoute.scss';
 import TopNavigation from './TopNavigationBar';
-//import PhotoDetailsModal from '../routes/PhotoDetailsModal';
 
 const HomeRoute = (props) => {
     const {
@@ -16,11 +15,9 @@ const HomeRoute = (props) => {
         currentTopic,
         photos,
         onPhotoClick,
-        displayModal,
-        setDisplayModal,
+        likedPhotos,
+        setLikedPhotos,
     } = props;
-
-    const [likedPhotos, setLikedPhotos] = useState([]);
 
     const handleLike = (photoId) => {
         setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, photoId]);
@@ -31,7 +28,6 @@ const HomeRoute = (props) => {
             prevLikedPhotos.filter((id) => id !== photoId)
         );
     };
-    //console.log(displayModal)
 
     return (
         <div className="home-route">
@@ -56,12 +52,9 @@ const HomeRoute = (props) => {
                 photos={photos}
                 likedPhotos={likedPhotos}
                 onPhotoClick={onPhotoClick}
-                setDisplayModal={setDisplayModal}
             />
-            {/* {displayModal && <PhotoDetailsModal onClose={() => setDisplayModal(false)} />} */}
         </div>
     );
 };
-
 
 export default HomeRoute;

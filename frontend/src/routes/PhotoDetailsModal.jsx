@@ -5,10 +5,9 @@ import closeSymbol from '../assets/closeSymbol.svg';
 const PhotoDetailsModal = ({ onClose, selectedPhoto, similarPhotos, isFavorite, onToggleFavorite }) => {
   const { imageSource, username, location, profile } = selectedPhoto;
 
-
   return (
     <div className="photo-details-modal">
-      <button className="photo-details-modal__close-button" onClick={onClose}>
+      <button className="photo-details-modal__close-button" onClick={() => { console.log("Close button clicked"); onClose(); }}>
         <img src={closeSymbol} alt="close symbol" />
       </button>
 
@@ -57,7 +56,8 @@ const PhotoDetailsModal = ({ onClose, selectedPhoto, similarPhotos, isFavorite, 
           {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
         </button>
       </div>
-    </div>
+    </div >
   );
 };
+
 export default PhotoDetailsModal;

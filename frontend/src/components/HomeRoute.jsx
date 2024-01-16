@@ -16,17 +16,19 @@ const HomeRoute = (props) => {
         photos,
         onPhotoClick,
         likedPhotos,
-        setLikedPhotos,
+        incrementLikedPhotosCount,
+        decrementLikedPhotosCount,
     } = props;
 
     const handleLike = (photoId) => {
-        setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, photoId]);
+        //setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, photoId]);
+        incrementLikedPhotosCount();
     };
 
     const handleUnlike = (photoId) => {
-        setLikedPhotos((prevLikedPhotos) =>
-            prevLikedPhotos.filter((id) => id !== photoId)
-        );
+        //setLikedPhotos((prevLikedPhotos) =>
+        // prevLikedPhotos.filter((id) => id !== photoId)
+        decrementLikedPhotosCount();
     };
 
     return (

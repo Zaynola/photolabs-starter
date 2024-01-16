@@ -20,7 +20,8 @@ const App = () => {
     updateTopic,
     resetFilters,
     toggleModal,
-    onCloseModal,
+    closeModal,
+    toggleFavorite,
     onToggleFavorite,
     setLikedPhotos,
   } = useApplicationData();
@@ -39,14 +40,17 @@ const App = () => {
         onPhotoClick={toggleModal}
         isFavorite={isFavorite}
         likedPhotos={likedPhotos}
-        setLikedPhotos={setLikedPhotos}
+        //setLikedPhotos={setLikedPhotos}
+        incrementLikedPhotosCount={incrementLikedPhotosCount}
+        decrementLikedPhotosCount={decrementLikedPhotosCount}
+
       />
       {selectedPhoto && (
         <PhotoDetailsModal
-          onClose={onCloseModal}
+          onClose={closeModal}
           selectedPhoto={selectedPhoto}
           isFavorite={likedPhotos.includes(selectedPhoto.id)}
-          onToggleFavorite={onToggleFavorite}
+          onToggleFavorite={toggleFavorite}
         />
       )}
     </div>

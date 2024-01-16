@@ -44,7 +44,7 @@ const App = () => {
 
   return (
     <div className="App">
-       <HomeRoute
+      <HomeRoute
         photos={photos}
         topics={topics}
         likedPhotosCount={likedPhotosCount}
@@ -54,15 +54,15 @@ const App = () => {
         resetFilters={resetFilters}
         currentTopic={currentTopic}
         onPhotoClick={toggleModal}
-       // displayModal={displayModal}
+      // displayModal={displayModal}
       // setDisplayModal={setDisplayModal}
       />
-       {selectedPhoto && <PhotoDetailsModal onClose={toggleModal}
-       selectedPhoto={selectedPhoto}
-       />}
+      {selectedPhoto && <PhotoDetailsModal onClose={toggleModal}
+        selectedPhoto={selectedPhoto}
+      />}
 
-       
-       
+
+
     </div>
   );
 };

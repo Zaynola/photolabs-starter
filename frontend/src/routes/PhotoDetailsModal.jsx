@@ -40,20 +40,20 @@ const PhotoDetailsModal = ({ onClose, selectedPhoto, similarPhotos }) => {
       </div>
 
       {/* Similar Photos Section */}
-        <div className="photo-details-modal__images">
-          <h3>Similar Photos</h3>
-          <div className="photo-details-modal__images-grid">
+      <div className="photo-details-modal__images">
+        <h3>Similar Photos</h3>
+        <div className="photo-details-modal__images-grid">
           {Object.values(selectedPhoto.similar_photos).map((photo) => (
-              <img
-                key={photo.id}
-                className="photo-details-modal__image"
-                src={photo.urls.regular}
-                alt={`Similar Photo by ${photo.user.username}`}
-              />
-            ))}
-          </div>
+            <img
+              key={photo.id}
+              className="photo-details-modal__thumbnail"
+              src={photo.urls.regular}
+              alt={`Similar Photo by ${photo.user.username}`}
+            />
+          ))}
         </div>
- </div> );
+      </div>
+    </div>);
 };
 
 export default PhotoDetailsModal;

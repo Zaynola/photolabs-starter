@@ -25,7 +25,7 @@ const HomeRoute = (props) => {
     const handleLike = (photoId) => {
         setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, photoId]);
     };
-    
+
     const handleUnlike = (photoId) => {
         setLikedPhotos((prevLikedPhotos) =>
             prevLikedPhotos.filter((id) => id !== photoId)

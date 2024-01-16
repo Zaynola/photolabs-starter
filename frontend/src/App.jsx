@@ -35,7 +35,9 @@ const App = () => {
   };
 
   const toggleModal = () => {
+    // console.log("toggglemodal")
     setDisplayModal(!displayModal);
+    // console.log(displayModal)
   };
 
   return (
@@ -50,6 +52,8 @@ const App = () => {
         resetFilters={resetFilters}
         currentTopic={currentTopic}
         onPhotoClick={toggleModal}
+        displayModal={displayModal}
+       setDisplayModal={setDisplayModal}
       />
        {displayModal && <PhotoDetailsModal onClose={toggleModal} />}
     </div>

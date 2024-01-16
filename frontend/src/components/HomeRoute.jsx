@@ -16,11 +16,11 @@ const HomeRoute = (props) => {
         currentTopic,
         photos,
         onPhotoClick,
+        displayModal,
+        setDisplayModal,
     } = props;
 
     const [likedPhotos, setLikedPhotos] = useState([]);
-    const [displayModal, setDisplayModal] = useState(false);
-
 
     const handleLike = (photoId) => {
         setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, photoId]);
@@ -31,10 +31,7 @@ const HomeRoute = (props) => {
             prevLikedPhotos.filter((id) => id !== photoId)
         );
     };
-
-    const handlePhotoClick = () => {
-        setDisplayModal(true);
-      };
+    //console.log(displayModal)
 
     return (
         <div className="home-route">
@@ -61,7 +58,7 @@ const HomeRoute = (props) => {
                 onPhotoClick={onPhotoClick}
                 setDisplayModal={setDisplayModal}
             />
-            {displayModal && <PhotoDetailsModal onClose={() => setDisplayModal(false)} />}
+            {/* {displayModal && <PhotoDetailsModal onClose={() => setDisplayModal(false)} />} */}
         </div>
     );
 };

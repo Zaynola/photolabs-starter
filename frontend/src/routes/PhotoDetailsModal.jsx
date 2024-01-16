@@ -4,7 +4,7 @@ import closeSymbol from '../assets/closeSymbol.svg';
 
 const PhotoDetailsModal = ({ onClose, selectedPhoto }) => {
   if (!selectedPhoto) {
-    return null;
+    return <span> test</span>
   }
 
   const { id, imageSource, username, profile, location } = selectedPhoto;

@@ -50,6 +50,23 @@ const reducer = (state, action) => {
         case ActionTypes.SET_PHOTO_DATA:
             return { ...state, photoData: action.payload };
 
+        case ActionTypes.FETCH_PHOTOS_BY_TOPIC:
+            const topicId = action.payload;
+            fetch(`/api/topics/photos/${topicId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Error ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    dispatch({ type: ActionTypes.SET_PHOTO_DATA, payload: data });
+                })
+                .catch(error => {
+                    console.error(`Error fetching photos for topic ${topicId}:`, error);
+                });
+            return state;
+
         default:
             return state;
     }

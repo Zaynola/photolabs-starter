@@ -2,12 +2,14 @@ import React from "react";
 import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
 import PropTypes from "prop-types";
+import { ActionTypes } from "../hooks/useApplicationData";
 
 
 const TopicList = (props) => {
   const { topics, updateTopic } = props;
-  const handleTopicClick = (topicName) => {
-    updateTopic(topicName);
+  const handleTopicClick = (topicId) => {
+    dispatch({ type: ActionTypes.FETCH_PHOTOS_BY_TOPIC, payload: topicId });
+    updateTopic(topicId);
   };
 
   return (
@@ -18,7 +20,7 @@ const TopicList = (props) => {
           id={topic.id}
           slug={topic.slug}
           title={topic.title}
-          onClick={() => handleTopicClick(topic.title)}
+          onClick={() => handleTopicClick(topic.id)}
         />
       ))}
     </div>
@@ -28,6 +30,7 @@ const TopicList = (props) => {
 TopicList.propTypes = {
   topics: PropTypes.array,
   updateTopic: PropTypes.func.isRequired,
+  dispatch: PropTypes.func,
 };
 
 export default TopicList;

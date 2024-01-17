@@ -52,7 +52,7 @@ const PhotoListItem = ({ id, imageSource, username, profile, location, onLike, o
 
 
 PhotoListItem.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   imageSource: PropTypes.string,
   username: PropTypes.string,
   profile: PropTypes.string,

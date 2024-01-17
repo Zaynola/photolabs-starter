@@ -4,6 +4,7 @@ import PhotoList from './PhotoList';
 import FavBadge from './FavBadge';
 import '../styles/HomeRoute.scss';
 import TopNavigation from './TopNavigationBar';
+import TopicList from './TopicList';
 
 const HomeRoute = (props) => {
     const {
@@ -13,7 +14,8 @@ const HomeRoute = (props) => {
         updateTopic,
         resetFilters,
         currentTopic,
-        photos,
+        photoData,
+        topicData,
         onPhotoClick,
         likedPhotos,
         incrementLikedPhotosCount,
@@ -21,13 +23,10 @@ const HomeRoute = (props) => {
     } = props;
 
     const handleLike = (photoId) => {
-        //setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, photoId]);
         incrementLikedPhotosCount();
     };
 
     const handleUnlike = (photoId) => {
-        //setLikedPhotos((prevLikedPhotos) =>
-        // prevLikedPhotos.filter((id) => id !== photoId)
         decrementLikedPhotosCount();
     };
 
@@ -51,10 +50,11 @@ const HomeRoute = (props) => {
                 onUnLike={handleUnlike}
                 showFavOnly={showFavOnly}
                 currentTopic={currentTopic}
-                photos={photos}
+                photos={photoData}
                 likedPhotos={likedPhotos}
                 onPhotoClick={onPhotoClick}
             />
+            <TopicList topics={topicData} updateTopic={updateTopic} />
         </div>
     );
 };

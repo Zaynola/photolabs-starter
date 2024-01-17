@@ -1,5 +1,5 @@
-import { useReducer } from 'react';
-import photos from '../mocks/photos';
+import { useReducer, useEffect } from 'react';
+//import photos from '../mocks/photos';
 
 export const ActionTypes = {
     INCREMENT_LIKED_PHOTOS_COUNT: 'INCREMENT_LIKED_PHOTOS_COUNT',
@@ -10,6 +10,9 @@ export const ActionTypes = {
     TOGGLE_MODAL: 'TOGGLE_MODAL',
     CLOSE_MODAL: 'CLOSE_MODAL',
     TOGGLE_FAVORITE: 'TOGGLE_FAVORITE',
+    FETCH_PHOTO_DATA: 'FETCH_PHOTO_DATA',
+    SET_PHOTO_DATA: 'SET_PHOTO_DATA',
+    SET_TOPIC_DATA: 'SET_TOPIC_DATA',
 };
 
 const reducer = (state, action) => {
@@ -44,22 +47,66 @@ const reducer = (state, action) => {
 
             return { ...state, likedPhotos: updatedLikedPhotos, isFavorite: !isFavorite };
 
+        case ActionTypes.SET_PHOTO_DATA:
+            return { ...state, photoData: action.payload };
+
         default:
             return state;
     }
 };
 
-const useApplicationData = () => {
-    const [state, dispatch] = useReducer(reducer, {
-        likedPhotosCount: 0,
-        showFavOnly: false,
-        currentTopic: null,
-        selectedPhoto: null,
-        isFavorite: false,
-        likedPhotos: [],
-    });
+const initialState = {
+    likedPhotosCount: 0,
+    showFavOnly: false,
+    currentTopic: null,
+    selectedPhoto: null,
+    isFavorite: false,
+    likedPhotos: [],
+    photoData: [],
+    topicData: [],
+};
 
-    const { likedPhotosCount, showFavOnly, currentTopic, selectedPhoto, isFavorite, likedPhotos } = state;
+const useApplicationData = () => {
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    const { likedPhotosCount, showFavOnly, currentTopic, selectedPhoto, isFavorite, likedPhotos, photoData } = state;
+
+    useEffect(() => {
+        const fetchData = () => {
+            // Fetch photo data
+            fetch('/api/photos')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Error ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    //console.log('Response from /api/photos:', data);
+                    dispatch({ type: ActionTypes.SET_PHOTO_DATA, payload: data });
+                })
+                .catch(error => {
+                    console.error('Error fetching data from /api/photos:', error);
+                });
+
+            // Fetch topic data
+            fetch('/api/topics')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Error ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    dispatch({ type: ActionTypes.SET_TOPIC_DATA, payload: data });
+                })
+                .catch(error => {
+                    console.error('Error fetching data from /api/topics:', error);
+                });
+        };
+
+        fetchData();
+    }, []);
 
     const {
         incrementLikedPhotosCount,
@@ -81,7 +128,7 @@ const useApplicationData = () => {
         toggleFavorite: () => dispatch({ type: ActionTypes.TOGGLE_FAVORITE }),
     };
 
-    return { likedPhotosCount, showFavOnly, currentTopic, selectedPhoto, isFavorite, likedPhotos, incrementLikedPhotosCount, decrementLikedPhotosCount, toggleShowFavOnly, updateTopic, resetFilters, toggleModal, closeModal, toggleFavorite };
+    return { likedPhotosCount, showFavOnly, currentTopic, selectedPhoto, isFavorite, likedPhotos, photoData, incrementLikedPhotosCount, decrementLikedPhotosCount, toggleShowFavOnly, updateTopic, resetFilters, toggleModal, closeModal, toggleFavorite };
 };
 
 export default useApplicationData;

@@ -5,16 +5,20 @@ import PropTypes from "prop-types";
 
 
 const TopicList = (props) => {
-  const { topics } = props;
+  const { topics, updateTopic } = props;
+  const handleTopicClick = (topicName) => {
+    updateTopic(topicName);
+  };
 
   return (
     <div className="top-nav-bar__topic-list">
-      {topics.map((topic) => (
+      {topics && topics.map((topic) => (
         <TopicListItem
           key={topic.id}
           id={topic.id}
           slug={topic.slug}
           title={topic.title}
+          onClick={() => handleTopicClick(topic.title)}
         />
       ))}
     </div>
@@ -22,7 +26,8 @@ const TopicList = (props) => {
 };
 
 TopicList.propTypes = {
-  topics: PropTypes.array.isRequired,
+  topics: PropTypes.array,
+  updateTopic: PropTypes.func.isRequired,
 };
 
 export default TopicList;

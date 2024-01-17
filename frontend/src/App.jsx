@@ -22,6 +22,8 @@ const App = () => {
     toggleModal,
     closeModal,
     toggleFavorite,
+    photoData,
+    topicData,
     onToggleFavorite,
     setLikedPhotos,
   } = useApplicationData();
@@ -31,6 +33,8 @@ const App = () => {
       <HomeRoute
         photos={photos}
         topics={topics}
+        photoData={photoData}
+        topicData={topicData}
         likedPhotosCount={likedPhotosCount}
         toggleShowFavOnly={toggleShowFavOnly}
         showFavOnly={showFavOnly}
@@ -40,7 +44,6 @@ const App = () => {
         onPhotoClick={toggleModal}
         isFavorite={isFavorite}
         likedPhotos={likedPhotos}
-        //setLikedPhotos={setLikedPhotos}
         incrementLikedPhotosCount={incrementLikedPhotosCount}
         decrementLikedPhotosCount={decrementLikedPhotosCount}
 

@@ -1,6 +1,5 @@
 import { useReducer, useEffect } from 'react';
 //import photos from '../mocks/photos';
-
 export const ActionTypes = {
     INCREMENT_LIKED_PHOTOS_COUNT: 'INCREMENT_LIKED_PHOTOS_COUNT',
     DECREMENT_LIKED_PHOTOS_COUNT: 'DECREMENT_LIKED_PHOTOS_COUNT',
@@ -14,39 +13,29 @@ export const ActionTypes = {
     SET_PHOTO_DATA: 'SET_PHOTO_DATA',
     SET_TOPIC_DATA: 'SET_TOPIC_DATA',
 };
-
 const reducer = (state, action) => {
     switch (action.type) {
         case ActionTypes.INCREMENT_LIKED_PHOTOS_COUNT:
             return { ...state, likedPhotosCount: state.likedPhotosCount + 1 };
-
         case ActionTypes.DECREMENT_LIKED_PHOTOS_COUNT:
             return { ...state, likedPhotosCount: Math.max(0, state.likedPhotosCount - 1) };
-
         case ActionTypes.TOGGLE_SHOW_FAV_ONLY:
             return { ...state, showFavOnly: !state.showFavOnly };
-
         case ActionTypes.UPDATE_TOPIC:
             return { ...state, currentTopic: action.payload };
-
         case ActionTypes.RESET_FILTERS:
             return { ...state, showFavOnly: false, currentTopic: null };
-
         case ActionTypes.TOGGLE_MODAL:
-            const target = photos.find(photo => photo.id === action.payload);
+            const target = state.photoData.find(photo => photo.id === action.payload);
             return { ...state, selectedPhoto: target };
-
         case ActionTypes.CLOSE_MODAL:
             return { ...state, selectedPhoto: null };
-
         case ActionTypes.TOGGLE_FAVORITE:
             const isFavorite = state.likedPhotos.includes(state.selectedPhoto.id);
             const updatedLikedPhotos = isFavorite
                 ? state.likedPhotos.filter((photoId) => photoId !== state.selectedPhoto.id)
                 : [...state.likedPhotos, state.selectedPhoto.id];
-
             return { ...state, likedPhotos: updatedLikedPhotos, isFavorite: !isFavorite };
-
         case ActionTypes.SET_PHOTO_DATA:
             return { ...state, photoData: action.payload };
 
@@ -71,7 +60,6 @@ const reducer = (state, action) => {
             return state;
     }
 };
-
 const initialState = {
     likedPhotosCount: 0,
     showFavOnly: false,
@@ -82,12 +70,9 @@ const initialState = {
     photoData: [],
     topicData: [],
 };
-
 const useApplicationData = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
-
     const { likedPhotosCount, showFavOnly, currentTopic, selectedPhoto, isFavorite, likedPhotos, photoData } = state;
-
     useEffect(() => {
         const fetchData = () => {
             // Fetch photo data
@@ -105,7 +90,6 @@ const useApplicationData = () => {
                 .catch(error => {
                     console.error('Error fetching data from /api/photos:', error);
                 });
-
             // Fetch topic data
             fetch('/api/topics')
                 .then(response => {
@@ -121,10 +105,8 @@ const useApplicationData = () => {
                     console.error('Error fetching data from /api/topics:', error);
                 });
         };
-
         fetchData();
     }, []);
-
     const {
         incrementLikedPhotosCount,
         decrementLikedPhotosCount,
@@ -144,8 +126,6 @@ const useApplicationData = () => {
         closeModal: () => dispatch({ type: ActionTypes.CLOSE_MODAL }),
         toggleFavorite: () => dispatch({ type: ActionTypes.TOGGLE_FAVORITE }),
     };
-
     return { likedPhotosCount, showFavOnly, currentTopic, selectedPhoto, isFavorite, likedPhotos, photoData, incrementLikedPhotosCount, decrementLikedPhotosCount, toggleShowFavOnly, updateTopic, resetFilters, toggleModal, closeModal, toggleFavorite };
 };
-
 export default useApplicationData;

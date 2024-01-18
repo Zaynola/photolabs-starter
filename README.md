@@ -24,5 +24,5 @@ npm start
 ```
 
 ## Screenshots
-["screenshot of the front page displaying the photos"](https://github.com/Zaynola/photolabs-starter/blob/main/docs/photolabs%201.png?raw=true)
-["screenshot showing similar photos](https://github.com/Zaynola/photolabs-starter/blob/main/docs/photolabs%202.png?raw=true)
+!["screenshot of the front page displaying the photos"](https://github.com/Zaynola/photolabs-starter/blob/main/docs/photolabs%201.png?raw=true)
+!["screenshot showing similar photos"](https://github.com/Zaynola/photolabs-starter/blob/main/docs/photolabs%202.png?raw=true)

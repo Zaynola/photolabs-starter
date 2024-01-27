@@ -6,9 +6,9 @@ import { ActionTypes } from "../hooks/useApplicationData";
 
 
 const TopicList = (props) => {
-    const { topics, updateTopic } = props;
+    const { topics, updateTopic, fetchDataByTopic } = props;
     const handleTopicClick = (topicId) => {
-        dispatch({ type: ActionTypes.FETCH_PHOTOS_BY_TOPIC, payload: topicId });
+        fetchDataByTopic(topicId);
         updateTopic(topicId);
     };
 

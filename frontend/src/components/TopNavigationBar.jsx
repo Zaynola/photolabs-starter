@@ -13,6 +13,7 @@ const TopNavigation = (props) => {
     updateTopic,
     resetFilters,
     currentTopic,
+    fetchDataByTopic,
   } = props;
 
   return (
@@ -26,6 +27,7 @@ const TopNavigation = (props) => {
           topics={topics}
           updateTopic={updateTopic}
           currentTopic={currentTopic}
+          fetchDataByTopic={fetchDataByTopic}
         />
 
         <div

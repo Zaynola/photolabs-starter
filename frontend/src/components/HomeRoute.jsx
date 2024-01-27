@@ -20,6 +20,7 @@ const HomeRoute = (props) => {
         likedPhotos,
         incrementLikedPhotosCount,
         decrementLikedPhotosCount,
+        fetchDataByTopic,
     } = props;
 
     const handleLike = (photoId) => {
@@ -40,6 +41,7 @@ const HomeRoute = (props) => {
                 updateTopic={updateTopic}
                 resetFilters={resetFilters}
                 currentTopic={currentTopic || ''}
+                fetchDataByTopic={fetchDataByTopic}
             />
             <FavBadge
                 isFavPhotoExist={likedPhotos.length > 0}

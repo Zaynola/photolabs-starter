@@ -10,6 +10,7 @@ export const ActionTypes = {
     CLOSE_MODAL: 'CLOSE_MODAL',
     TOGGLE_FAVORITE: 'TOGGLE_FAVORITE',
     FETCH_PHOTO_DATA: 'FETCH_PHOTO_DATA',
+    FETCH_PHOTOS_BY_TOPIC: 'FETCH_PHOTOS_BY_TOPIC',
     SET_PHOTO_DATA: 'SET_PHOTO_DATA',
     SET_TOPIC_DATA: 'SET_TOPIC_DATA',
 };
@@ -41,20 +42,7 @@ const reducer = (state, action) => {
 
         case ActionTypes.FETCH_PHOTOS_BY_TOPIC:
             const topicId = action.payload;
-            fetch(`/api/topics/photos/${topicId}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Error ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    dispatch({ type: ActionTypes.SET_PHOTO_DATA, payload: data });
-                })
-                .catch(error => {
-                    console.error(`Error fetching photos for topic ${topicId}:`, error);
-                });
-            return state;
+            return { ...state, currentTopic: action.payload };
 
         default:
             return state;
@@ -73,6 +61,22 @@ const initialState = {
 const useApplicationData = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const { likedPhotosCount, showFavOnly, currentTopic, selectedPhoto, isFavorite, likedPhotos, photoData } = state;
+    useEffect(() => {
+        fetch(`/api/topics/photos/${currentTopic}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error ${response.status}`); reducer
+                }
+                return response.json();
+            })
+            .then(data => {
+                dispatch({ type: ActionTypes.SET_PHOTO_DATA, payload: data });
+            })
+            .catch(error => {
+                console.error(`Error fetching photos for topic ${currentTopic}:`, error);
+            });
+    }, [currentTopic]
+    )
     useEffect(() => {
         const fetchData = () => {
             // Fetch photo data
@@ -116,6 +120,7 @@ const useApplicationData = () => {
         toggleModal,
         closeModal,
         toggleFavorite,
+        fetchDataByTopic
     } = {
         incrementLikedPhotosCount: () => dispatch({ type: ActionTypes.INCREMENT_LIKED_PHOTOS_COUNT }),
         decrementLikedPhotosCount: () => dispatch({ type: ActionTypes.DECREMENT_LIKED_PHOTOS_COUNT }),
@@ -125,7 +130,8 @@ const useApplicationData = () => {
         toggleModal: (id) => dispatch({ type: ActionTypes.TOGGLE_MODAL, payload: id }),
         closeModal: () => dispatch({ type: ActionTypes.CLOSE_MODAL }),
         toggleFavorite: () => dispatch({ type: ActionTypes.TOGGLE_FAVORITE }),
+        fetchDataByTopic: (topicId) => dispatch({ type: ActionTypes.FETCH_PHOTOS_BY_TOPIC, payload: topicId }),
     };
-    return { likedPhotosCount, showFavOnly, currentTopic, selectedPhoto, isFavorite, likedPhotos, photoData, incrementLikedPhotosCount, decrementLikedPhotosCount, toggleShowFavOnly, updateTopic, resetFilters, toggleModal, closeModal, toggleFavorite };
+    return { likedPhotosCount, showFavOnly, currentTopic, selectedPhoto, isFavorite, likedPhotos, photoData, fetchDataByTopic, incrementLikedPhotosCount, decrementLikedPhotosCount, toggleShowFavOnly, updateTopic, resetFilters, toggleModal, closeModal, toggleFavorite };
 };
 export default useApplicationData;

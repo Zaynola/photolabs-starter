@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const TopicListItem = ({ id, slug, title, onClick }) => {
   return (
-    <div className="topic-list__item" key={id} onClick={onClick}>
+    <div className="topic-list__item" key={id} onClick={() => onClick(id)}>
       <span>{title}</span>
     </div>
   );
@@ -18,3 +18,5 @@ TopicListItem.propTypes = {
 };
 
 export default TopicListItem;
+
+// onClick={onClick}

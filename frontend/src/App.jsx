@@ -26,6 +26,7 @@ const App = () => {
     topicData,
     onToggleFavorite,
     setLikedPhotos,
+    fetchDataByTopic,
   } = useApplicationData();
 
   return (
@@ -46,7 +47,7 @@ const App = () => {
         likedPhotos={likedPhotos}
         incrementLikedPhotosCount={incrementLikedPhotosCount}
         decrementLikedPhotosCount={decrementLikedPhotosCount}
-
+        fetchDataByTopic={fetchDataByTopic}
       />
       {selectedPhoto && (
         <PhotoDetailsModal

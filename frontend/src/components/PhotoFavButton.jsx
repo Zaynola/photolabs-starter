@@ -4,7 +4,7 @@ import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton(props) {
-  const { isFav, onFavClick, onUnFavClick } = props;
+  const { isFav, onFavClick, onUnFavClick, dispatch } = props;
 
   const handleIconClick = () => {
     console.log('Icon clicked!');
@@ -22,8 +22,7 @@ function PhotoFavButton(props) {
   return (
     <div className={buttonClasses} onClick={handleIconClick}>
       <div className="photo-list__fav-icon-svg">
-        {/* <FavIcon fill={isFav ? '#C80000' : '#EEEEEE'} /> */}
-        <FavIcon selected={isFav} />
+        <FavIcon selected={isFav} dispatch />
       </div>
     </div>
   );

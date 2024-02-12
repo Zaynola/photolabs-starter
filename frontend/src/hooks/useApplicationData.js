@@ -17,9 +17,10 @@ export const ActionTypes = {
 const reducer = (state, action) => {
     switch (action.type) {
         case ActionTypes.INCREMENT_LIKED_PHOTOS_COUNT:
-            return { ...state, likedPhotosCount: state.likedPhotosCount + 1 };
+            return { ...state, likedPhotosCount: state.likedPhotosCount + 1, likedPhotos: [...state.likedPhotos, action.payload] };
         case ActionTypes.DECREMENT_LIKED_PHOTOS_COUNT:
-            return { ...state, likedPhotosCount: Math.max(0, state.likedPhotosCount - 1) };
+            const newLikedPhotos = state.likedPhotos.filter((id) => id !== action.payload)
+            return { ...state, likedPhotosCount: Math.max(0, state.likedPhotosCount - 1), likedPhotos: newLikedPhotos };
         case ActionTypes.TOGGLE_SHOW_FAV_ONLY:
             return { ...state, showFavOnly: !state.showFavOnly };
         case ActionTypes.UPDATE_TOPIC:
@@ -122,8 +123,8 @@ const useApplicationData = () => {
         toggleFavorite,
         fetchDataByTopic
     } = {
-        incrementLikedPhotosCount: () => dispatch({ type: ActionTypes.INCREMENT_LIKED_PHOTOS_COUNT }),
-        decrementLikedPhotosCount: () => dispatch({ type: ActionTypes.DECREMENT_LIKED_PHOTOS_COUNT }),
+        incrementLikedPhotosCount: (photoId) => dispatch({ type: ActionTypes.INCREMENT_LIKED_PHOTOS_COUNT, payload: photoId }),
+        decrementLikedPhotosCount: (photoId) => dispatch({ type: ActionTypes.DECREMENT_LIKED_PHOTOS_COUNT, payload: photoId }),
         toggleShowFavOnly: () => dispatch({ type: ActionTypes.TOGGLE_SHOW_FAV_ONLY }),
         updateTopic: (newTopic) => dispatch({ type: ActionTypes.UPDATE_TOPIC, payload: newTopic }),
         resetFilters: () => dispatch({ type: ActionTypes.RESET_FILTERS }),

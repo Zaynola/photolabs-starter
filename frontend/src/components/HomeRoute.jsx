@@ -24,11 +24,12 @@ const HomeRoute = (props) => {
     } = props;
 
     const handleLike = (photoId) => {
-        incrementLikedPhotosCount();
+        //console.log('photoId', photoId)
+        incrementLikedPhotosCount(photoId);
     };
 
     const handleUnlike = (photoId) => {
-        decrementLikedPhotosCount();
+        decrementLikedPhotosCount(photoId);
     };
 
     return (

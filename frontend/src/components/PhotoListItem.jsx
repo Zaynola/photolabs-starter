@@ -5,6 +5,7 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = ({ id, imageSource, username, profile, location, onLike, onUnLike, likedPhotos, onPhotoClick }) => {
   const isFavInitially = likedPhotos.includes(id);
+  // console.log('likedPhotos', likedPhotos)
 
   const toggleFav = () => {
     if (isFavInitially) {
@@ -20,8 +21,9 @@ const PhotoListItem = ({ id, imageSource, username, profile, location, onLike, o
 
 
   return (
-    <div className="photo-list__item" onClick={handlePhotoClick}>
+    <div className="photo-list__item" >
       <img
+        onClick={handlePhotoClick}
         className="photo-list__image"
         src={imageSource}
         alt={`Photo by ${username}`}

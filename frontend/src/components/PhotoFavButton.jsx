@@ -7,7 +7,7 @@ function PhotoFavButton(props) {
   const { isFav, onFavClick, onUnFavClick, dispatch } = props;
 
   const handleIconClick = () => {
-    console.log('Icon clicked!');
+    // console.log(isFav);
     if (isFav) {
       console.log('Unfavoriting...');
       onUnFavClick();

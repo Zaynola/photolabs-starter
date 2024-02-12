@@ -30,6 +30,15 @@
   margin-bottom: 8px;
   margin-left: 36px;
   margin-top: 8px;
+
+  .photo-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .photo-details-modal__image {

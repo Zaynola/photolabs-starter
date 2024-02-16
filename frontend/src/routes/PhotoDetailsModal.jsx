@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/PhotoDetailsModal.scss';
 import closeSymbol from '../assets/closeSymbol.svg';
+import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoDetailsModal = ({ onClose, selectedPhoto, similarPhotos, isFavorite, onToggleFavorite }) => {
   const { imageSource, username, location, profile } = selectedPhoto;
@@ -13,6 +14,11 @@ const PhotoDetailsModal = ({ onClose, selectedPhoto, similarPhotos, isFavorite, 
 
       {/* Main Image Section */}
       <div className="photo-details-modal__content">
+        <PhotoFavButton
+          isFav={isFavorite}
+          onFavClick={onToggleFavorite}
+          onUnFavClick={onToggleFavorite}
+        />
         <img
           className="photo-details-modal__image"
           src={selectedPhoto.urls.full}
@@ -37,6 +43,11 @@ const PhotoDetailsModal = ({ onClose, selectedPhoto, similarPhotos, isFavorite, 
 
       {/* Similar Photos Section */}
       <div className="photo-details-modal__images">
+        <PhotoFavButton
+          isFav={isFavorite}
+          onFavClick={onToggleFavorite}
+          onUnFavClick={onToggleFavorite}
+        />
         <h3>Similar Photos</h3>
         <div className="photo-details-modal__images-grid">
           {Object.values(selectedPhoto.similar_photos).map((photo) => (

@@ -45,6 +45,7 @@ const PhotoDetailsModal = ({ onClose, selectedPhoto, similarPhotos, isFavorite, 
               className="photo-details-modal__thumbnail"
               src={photo.urls.regular}
               alt={`Similar Photo by ${photo.user.username}`}
+
             />
           ))}
         </div>

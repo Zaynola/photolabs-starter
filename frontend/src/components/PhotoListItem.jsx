@@ -22,6 +22,11 @@ const PhotoListItem = ({ id, imageSource, username, profile, location, onLike, o
 
   return (
     <div className="photo-list__item" >
+      <PhotoFavButton
+        isFav={isFavInitially}
+        onFavClick={toggleFav}
+        onUnFavClick={toggleFav}
+      />
       <img
         onClick={handlePhotoClick}
         className="photo-list__image"
@@ -43,11 +48,6 @@ const PhotoListItem = ({ id, imageSource, username, profile, location, onLike, o
           )}
         </div>
       </div>
-      <PhotoFavButton
-        isFav={isFavInitially}
-        onFavClick={toggleFav}
-        onUnFavClick={toggleFav}
-      />
     </div>
   );
 };

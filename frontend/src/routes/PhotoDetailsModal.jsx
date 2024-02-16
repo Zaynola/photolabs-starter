@@ -43,21 +43,22 @@ const PhotoDetailsModal = ({ onClose, selectedPhoto, similarPhotos, isFavorite, 
 
       {/* Similar Photos Section */}
       <div className="photo-details-modal__images">
-        <PhotoFavButton
-          isFav={isFavorite}
-          onFavClick={onToggleFavorite}
-          onUnFavClick={onToggleFavorite}
-        />
         <h3>Similar Photos</h3>
         <div className="photo-details-modal__images-grid">
           {Object.values(selectedPhoto.similar_photos).map((photo) => (
-            <img
-              key={photo.id}
-              className="photo-details-modal__thumbnail"
-              src={photo.urls.regular}
-              alt={`Similar Photo by ${photo.user.username}`}
-
-            />
+            <div key={photo.id}>
+              <PhotoFavButton
+                isFav={isFavorite}
+                onFavClick={onToggleFavorite}
+                onUnFavClick={onToggleFavorite}
+              />
+              <img
+                key={photo.id}
+                className="photo-details-modal__thumbnail"
+                src={photo.urls.regular}
+                alt={`Similar Photo by ${photo.user.username}`}
+              />
+            </div>
           ))}
         </div>
       </div>

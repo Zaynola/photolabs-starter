@@ -55,6 +55,9 @@ const App = () => {
           selectedPhoto={selectedPhoto}
           isFavorite={likedPhotos.includes(selectedPhoto.id)}
           onToggleFavorite={toggleFavorite}
+          onLike={incrementLikedPhotosCount}
+          onUnlike={decrementLikedPhotosCount}
+          likedPhotos={likedPhotos}
         />
       )}
     </div>

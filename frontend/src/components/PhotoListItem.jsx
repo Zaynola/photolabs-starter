@@ -3,19 +3,19 @@ import "../styles/PhotoListItem.scss";
 import PropTypes from "prop-types";
 import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoListItem = ({ id, imageSource, username, profile, location, onLike, onUnLike, likedPhotos, onPhotoClick }) => {
+const PhotoListItem = ({ id, imageSource, username, profile, location, onLike, onUnlike, likedPhotos, onPhotoClick }) => {
   const isFavInitially = likedPhotos.includes(id);
-  // console.log('likedPhotos', likedPhotos)
 
   const toggleFav = () => {
     if (isFavInitially) {
-      onUnLike(id);
+      onUnlike(id);
     } else {
       onLike(id);
     }
   };
 
   const handlePhotoClick = () => {
+    if (!onPhotoClick) return
     onPhotoClick(id);
   };
 

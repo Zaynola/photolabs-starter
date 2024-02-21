@@ -24,7 +24,6 @@ const HomeRoute = (props) => {
     } = props;
 
     const handleLike = (photoId) => {
-        //console.log('photoId', photoId)
         incrementLikedPhotosCount(photoId);
     };
 
@@ -50,7 +49,7 @@ const HomeRoute = (props) => {
             />
             <PhotoList
                 onLike={handleLike}
-                onUnLike={handleUnlike}
+                onUnlike={handleUnlike}
                 showFavOnly={showFavOnly}
                 currentTopic={currentTopic}
                 photos={photoData}

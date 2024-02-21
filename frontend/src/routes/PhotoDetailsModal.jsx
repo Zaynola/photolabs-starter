@@ -2,8 +2,10 @@ import React from 'react';
 import '../styles/PhotoDetailsModal.scss';
 import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoFavButton from 'components/PhotoFavButton';
+import PhotoList from 'components/PhotoList';
 
-const PhotoDetailsModal = ({ onClose, selectedPhoto, similarPhotos, isFavorite, onToggleFavorite }) => {
+
+const PhotoDetailsModal = ({ onClose, selectedPhoto, onLike, onUnlike, likedPhotos, isFavorite, onToggleFavorite }) => {
   const { imageSource, username, location, profile } = selectedPhoto;
 
   return (
@@ -27,7 +29,7 @@ const PhotoDetailsModal = ({ onClose, selectedPhoto, similarPhotos, isFavorite, 
         <div className="photo-details-modal__photographer-details">
           <img
             className="photo-details-modal__photographer-profile"
-            src={selectedPhoto.urls}
+            src={selectedPhoto.user.profile}
             alt={`${selectedPhoto.user.username}'s profile`}
           />
           <div className="photo-details-modal__info">
@@ -45,21 +47,12 @@ const PhotoDetailsModal = ({ onClose, selectedPhoto, similarPhotos, isFavorite, 
       <div className="photo-details-modal__images">
         <h3>Similar Photos</h3>
         <div className="photo-details-modal__images-grid">
-          {Object.values(selectedPhoto.similar_photos).map((photo) => (
-            <div key={photo.id}>
-              <PhotoFavButton
-                isFav={isFavorite}
-                onFavClick={onToggleFavorite}
-                onUnFavClick={onToggleFavorite}
-              />
-              <img
-                key={photo.id}
-                className="photo-details-modal__thumbnail"
-                src={photo.urls.regular}
-                alt={`Similar Photo by ${photo.user.username}`}
-              />
-            </div>
-          ))}
+          <PhotoList
+            photos={Object.values(selectedPhoto.similar_photos)}
+            onLike={onLike}
+            onUnlike={onUnlike}
+            likedPhotos={likedPhotos}
+          />
         </div>
       </div>
 

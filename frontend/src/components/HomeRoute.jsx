@@ -1,14 +1,11 @@
 import React from 'react';
-import { useState } from 'react';
 import PhotoList from './PhotoList';
-import FavBadge from './FavBadge';
 import '../styles/HomeRoute.scss';
 import TopNavigation from './TopNavigationBar';
 import TopicList from './TopicList';
 
 const HomeRoute = (props) => {
     const {
-        toggleShowFavOnly,
         topics,
         showFavOnly,
         updateTopic,
@@ -35,7 +32,6 @@ const HomeRoute = (props) => {
         <div className="home-route">
             <TopNavigation
                 likedPhotos={likedPhotos.length}
-                toggleShowFavOnly={toggleShowFavOnly}
                 topics={topics}
                 showFavOnly={showFavOnly}
                 updateTopic={updateTopic}
@@ -43,10 +39,7 @@ const HomeRoute = (props) => {
                 currentTopic={currentTopic || ''}
                 fetchDataByTopic={fetchDataByTopic}
             />
-            <FavBadge
-                isFavPhotoExist={likedPhotos.length > 0}
-                likedPhotosCount={likedPhotos.length}
-            />
+
             <PhotoList
                 onLike={handleLike}
                 onUnlike={handleUnlike}

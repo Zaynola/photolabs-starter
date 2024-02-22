@@ -16,7 +16,6 @@ const App = () => {
     likedPhotos,
     incrementLikedPhotosCount,
     decrementLikedPhotosCount,
-    toggleShowFavOnly,
     updateTopic,
     resetFilters,
     toggleModal,
@@ -24,8 +23,6 @@ const App = () => {
     toggleFavorite,
     photoData,
     topicData,
-    onToggleFavorite,
-    setLikedPhotos,
     fetchDataByTopic,
   } = useApplicationData();
 
@@ -37,7 +34,6 @@ const App = () => {
         photoData={photoData}
         topicData={topicData}
         likedPhotosCount={likedPhotosCount}
-        toggleShowFavOnly={toggleShowFavOnly}
         showFavOnly={showFavOnly}
         updateTopic={updateTopic}
         resetFilters={resetFilters}

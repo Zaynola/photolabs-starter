@@ -1,5 +1,5 @@
 import { useReducer, useEffect } from 'react';
-//import photos from '../mocks/photos';
+
 export const ActionTypes = {
     INCREMENT_LIKED_PHOTOS_COUNT: 'INCREMENT_LIKED_PHOTOS_COUNT',
     DECREMENT_LIKED_PHOTOS_COUNT: 'DECREMENT_LIKED_PHOTOS_COUNT',
@@ -21,8 +21,6 @@ const reducer = (state, action) => {
         case ActionTypes.DECREMENT_LIKED_PHOTOS_COUNT:
             const newLikedPhotos = state.likedPhotos.filter((id) => id !== action.payload)
             return { ...state, likedPhotosCount: Math.max(0, state.likedPhotosCount - 1), likedPhotos: newLikedPhotos };
-        case ActionTypes.TOGGLE_SHOW_FAV_ONLY:
-            return { ...state, showFavOnly: !state.showFavOnly };
         case ActionTypes.UPDATE_TOPIC:
             return { ...state, currentTopic: action.payload };
         case ActionTypes.RESET_FILTERS:
@@ -89,7 +87,6 @@ const useApplicationData = () => {
                     return response.json();
                 })
                 .then(data => {
-                    //console.log('Response from /api/photos:', data);
                     dispatch({ type: ActionTypes.SET_PHOTO_DATA, payload: data });
                 })
                 .catch(error => {
@@ -115,7 +112,6 @@ const useApplicationData = () => {
     const {
         incrementLikedPhotosCount,
         decrementLikedPhotosCount,
-        toggleShowFavOnly,
         updateTopic,
         resetFilters,
         toggleModal,
@@ -125,7 +121,6 @@ const useApplicationData = () => {
     } = {
         incrementLikedPhotosCount: (photoId) => dispatch({ type: ActionTypes.INCREMENT_LIKED_PHOTOS_COUNT, payload: photoId }),
         decrementLikedPhotosCount: (photoId) => dispatch({ type: ActionTypes.DECREMENT_LIKED_PHOTOS_COUNT, payload: photoId }),
-        toggleShowFavOnly: () => dispatch({ type: ActionTypes.TOGGLE_SHOW_FAV_ONLY }),
         updateTopic: (newTopic) => dispatch({ type: ActionTypes.UPDATE_TOPIC, payload: newTopic }),
         resetFilters: () => dispatch({ type: ActionTypes.RESET_FILTERS }),
         toggleModal: (id) => dispatch({ type: ActionTypes.TOGGLE_MODAL, payload: id }),
@@ -133,6 +128,6 @@ const useApplicationData = () => {
         toggleFavorite: () => dispatch({ type: ActionTypes.TOGGLE_FAVORITE }),
         fetchDataByTopic: (topicId) => dispatch({ type: ActionTypes.FETCH_PHOTOS_BY_TOPIC, payload: topicId }),
     };
-    return { likedPhotosCount, showFavOnly, currentTopic, selectedPhoto, isFavorite, likedPhotos, photoData, fetchDataByTopic, incrementLikedPhotosCount, decrementLikedPhotosCount, toggleShowFavOnly, updateTopic, resetFilters, toggleModal, closeModal, toggleFavorite };
+    return { likedPhotosCount, showFavOnly, currentTopic, selectedPhoto, isFavorite, likedPhotos, photoData, fetchDataByTopic, incrementLikedPhotosCount, decrementLikedPhotosCount, updateTopic, resetFilters, toggleModal, closeModal, toggleFavorite };
 };
 export default useApplicationData;

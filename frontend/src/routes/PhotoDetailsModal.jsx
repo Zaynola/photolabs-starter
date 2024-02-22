@@ -15,7 +15,7 @@ const PhotoDetailsModal = ({ onClose, selectedPhoto, onLike, onUnlike, likedPhot
       </button>
 
       {/* Main Image Section */}
-      <div className="photo-details-modal__content">
+      <div className="photo-details-modal__images">
         <PhotoFavButton
           isFav={isFavorite}
           onFavClick={onToggleFavorite}
@@ -54,13 +54,6 @@ const PhotoDetailsModal = ({ onClose, selectedPhoto, onLike, onUnlike, likedPhot
             likedPhotos={likedPhotos}
           />
         </div>
-      </div>
-
-      {/* Favorite Icon */}
-      <div className="photo-details-modal__favorite">
-        <button onClick={onToggleFavorite}>
-          {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-        </button>
       </div>
     </div >
   );

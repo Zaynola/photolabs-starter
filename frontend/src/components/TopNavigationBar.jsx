@@ -6,10 +6,8 @@ import FavBadge from './FavBadge';
 
 const TopNavigation = (props) => {
   const {
-    likedPhotosCount,
-    toggleShowFavOnly,
+    likedPhotos,
     topics,
-    showFavOnly,
     updateTopic,
     resetFilters,
     currentTopic,
@@ -22,28 +20,21 @@ const TopNavigation = (props) => {
         PhotoLabs
       </span>
 
-      <div className="top-nav-bar--links">
-        <TopicList
-          topics={topics}
-          updateTopic={updateTopic}
-          currentTopic={currentTopic}
-          fetchDataByTopic={fetchDataByTopic}
-        />
+      <TopicList
+        topics={topics}
+        updateTopic={updateTopic}
+        currentTopic={currentTopic}
+        fetchDataByTopic={fetchDataByTopic}
+      />
 
-        <div
-          className={showFavOnly ? "top-nav-bar-fav--active" : "top-nav-bar-fav"}>
-          <FavBadge likedPhotosCount={likedPhotosCount} onClick={toggleShowFavOnly} />
-        </div>
-      </div>
+      <FavBadge likedPhotosCount={likedPhotos} isFavPhotoExist={likedPhotos > 0} />
     </div>
   );
 };
 
 TopNavigation.propTypes = {
   likedPhotosCount: PropTypes.number,
-  toggleShowFavOnly: PropTypes.func.isRequired,
   topics: PropTypes.array.isRequired,
-  showFavOnly: PropTypes.bool.isRequired,
   updateTopic: PropTypes.func.isRequired,
   resetFilters: PropTypes.func.isRequired,
   currentTopic: PropTypes.string,
